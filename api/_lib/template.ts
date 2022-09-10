@@ -1,35 +1,23 @@
-import { readFileSync } from 'fs';
 import { marked } from 'marked';
 import { sanitizeHtml } from './sanitizer';
 import { ParsedRequest } from './types';
+
 const twemoji = require('twemoji');
 const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
-const rglr = readFileSync(
-  `${__dirname}/../_fonts/Inter-Regular.woff2`
-).toString('base64');
-const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString(
-  'base64'
-);
 function getCss(seed: string, fontSize: string) {
   const color = seededColor(seed);
   console.log(getBrightness(color));
   let background = backgroundColor(color);
   let foreground = `${getBrightness(color) ? '#121212' : '#fff'}`;
   return `
-    @font-face {
-        font-family: 'Inter';
-        font-style:  normal;
-        font-weight: normal;
-        src: url(data:font/otf;charset=utf-8;base64,${rglr}) format('otf');
-    }
+    @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css)
 
     @font-face {
-        font-family: 'Inter';
+        font-family: 'Noto Sans KR', sans-serif;
         font-style:  normal;
         font-weight: bold;
-        src: url(data:font/otf;charset=utf-8;base64,${bold}) format('otf');
     }
     body {
         background: ${background};
