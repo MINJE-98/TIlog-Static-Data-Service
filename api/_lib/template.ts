@@ -7,12 +7,11 @@ const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
 const rglr = readFileSync(
-  `${__dirname}/../_fonts/NotoSansKR-Regular.otf`
+  `${__dirname}/../_fonts/Inter-Regular.woff2`
 ).toString('base64');
-const bold = readFileSync(
-  `${__dirname}/../_fonts/NotoSansKR-Medium.otf`
-).toString('base64');
-
+const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString(
+  'base64'
+);
 function getCss(seed: string, fontSize: string) {
   const color = seededColor(seed);
   console.log(getBrightness(color));
