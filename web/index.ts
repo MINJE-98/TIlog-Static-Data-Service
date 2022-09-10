@@ -180,7 +180,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     fileType = 'png',
     fontSize = '100px',
     md = true,
-    text = '안녀엉?',
+    text = 'Input..',
     widths = [],
     heights = [],
     showToast = false,
