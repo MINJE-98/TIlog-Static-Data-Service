@@ -6,9 +6,16 @@ const twemoji = require('twemoji');
 const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
-const bold = readFileSync(
-  `${__dirname}/../_fonts/Pretendard-Bold.woff`
+const rglr = readFileSync(
+  `${__dirname}/../_fonts/Inter-Regular.woff2`
 ).toString('base64');
+const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString(
+  'base64'
+);
+const Pretendard = readFileSync(
+  `${__dirname}/../_fonts/Pretendard-Bold.woff2`
+).toString('base64');
+
 function getCss(seed: string, fontSize: string) {
   const color = seededColor(seed);
   console.log(getBrightness(color));
@@ -19,15 +26,23 @@ function getCss(seed: string, fontSize: string) {
         font-family: 'Inter';
         font-style:  normal;
         font-weight: normal;
-        src: url(data:font/woff;charset=utf-8;base64,${bold}) format('woff');
+        src: url(data:font/woff2;charset=utf-8;base64,${rglr}) format('woff2');
     }
 
     @font-face {
         font-family: 'Inter';
         font-style:  normal;
         font-weight: bold;
-        src: url(data:font/woff;charset=utf-8;base64,${bold}) format('woff');
+        src: url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
     }
+
+    @font-face {
+      font-family: 'Pretendard';
+      font-style:  normal;
+      font-weight: bold;
+      src: url(data:font/woff2;charset=utf-8;base64,${Pretendard}) format('woff2');
+    }
+
     body {
         background: ${background};
         background-size: 100px 100px;
@@ -75,7 +90,7 @@ function getCss(seed: string, fontSize: string) {
     }
     
     .heading {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', 'Pretendard', sans-serif;
         font-size: ${sanitizeHtml(fontSize)};
         font-style: normal;
         color: ${foreground};
